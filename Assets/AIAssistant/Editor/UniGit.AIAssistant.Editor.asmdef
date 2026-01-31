@@ -1,0 +1,14 @@
+{
+    "name": "UniGit.AIAssistant.Editor",
+    "rootNamespace": "UniGit.AIAssistant.Editor",
+    "references": ["UniGit.AIAssistant.Runtime"],
+    "includePlatforms": ["Editor"],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

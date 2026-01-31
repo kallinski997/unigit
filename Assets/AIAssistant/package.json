@@ -1,0 +1,20 @@
+{
+  "name": "com.unigit.aiassistant",
+  "version": "1.0.0",
+  "displayName": "AI Assistant for Unity",
+  "description": "An AI-powered assistant to accelerate level design, scene creation, and Unity development through intelligent prompts and automation.",
+  "unity": "2020.3",
+  "keywords": [
+    "ai",
+    "assistant",
+    "level design",
+    "automation",
+    "editor",
+    "tools"
+  ],
+  "author": {
+    "name": "UniGit",
+    "email": "support@unigit.com"
+  },
+  "dependencies": {}
+}
