@@ -1,0 +1,17 @@
+{
+  "name": "com.kallinski997.unigit",
+  "version": "1.0.0",
+  "displayName": "UniGit - Unity AI Assistant",
+  "description": "A Unity plugin for direct AI interaction within the Unity Editor",
+  "unity": "2019.4",
+  "keywords": [
+    "ai",
+    "assistant",
+    "editor",
+    "automation"
+  ],
+  "author": {
+    "name": "kallinski997"
+  },
+  "type": "tool"
+}
