@@ -1,0 +1,14 @@
+{
+    "name": "UniGit.AIAssistant.Runtime",
+    "rootNamespace": "UniGit.AIAssistant",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
