@@ -73,13 +73,11 @@ namespace UniGit.Runtime
                     request.SetRequestHeader("Content-Type", "application/json");
                     request.SetRequestHeader("Authorization", $"Bearer {config.apiKey}");
 
+                    // Send and await completion using TaskCompletionSource
+                    var tcs = new TaskCompletionSource<bool>();
                     var operation = request.SendWebRequest();
-                    
-                    // Wait for completion
-                    while (!operation.isDone)
-                    {
-                        await Task.Delay(100);
-                    }
+                    operation.completed += _ => tcs.SetResult(true);
+                    await tcs.Task;
 
                     if (request.result == UnityWebRequest.Result.Success)
                     {

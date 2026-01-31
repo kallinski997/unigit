@@ -41,7 +41,6 @@ namespace UniGit.Runtime
             
             context.AppendLine("=== Current Scene Context ===");
             
-            #if UNITY_EDITOR
             var scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
             context.AppendLine($"Scene Name: {scene.name}");
             context.AppendLine($"Scene Path: {scene.path}");
@@ -58,7 +57,6 @@ namespace UniGit.Runtime
                     ListComponents(obj, context, "    ");
                 }
             }
-            #endif
             
             return context.ToString();
         }

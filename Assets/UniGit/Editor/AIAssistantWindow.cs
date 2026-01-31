@@ -45,11 +45,11 @@ namespace UniGit.Editor
                 config = ScriptableObject.CreateInstance<AIAssistantConfig>();
                 
                 // Try to save it
-                #if UNITY_EDITOR
                 string resourcesPath = "Assets/UniGit/Resources";
                 if (!AssetDatabase.IsValidFolder(resourcesPath))
                 {
-                    System.IO.Directory.CreateDirectory(resourcesPath.Replace("Assets/", Application.dataPath + "/"));
+                    string fullPath = System.IO.Path.Combine(Application.dataPath, "UniGit", "Resources");
+                    System.IO.Directory.CreateDirectory(fullPath);
                     AssetDatabase.Refresh();
                 }
                 
@@ -63,7 +63,6 @@ namespace UniGit.Editor
                 {
                     Debug.LogWarning($"Could not save config asset: {ex.Message}");
                 }
-                #endif
             }
         }
 
@@ -154,8 +153,7 @@ namespace UniGit.Editor
             GUI.enabled = !isProcessing;
             userInput = EditorGUILayout.TextField(userInput);
             
-            if (GUILayout.Button(isProcessing ? "Sending..." : "Send", GUILayout.Width(80)) || 
-                (Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.Return && !string.IsNullOrWhiteSpace(userInput)))
+            if (GUILayout.Button(isProcessing ? "Sending..." : "Send", GUILayout.Width(80)) || ShouldSendMessageOnKeyPress())
             {
                 SendMessage();
             }
@@ -164,6 +162,13 @@ namespace UniGit.Editor
             
             EditorGUILayout.EndHorizontal();
             EditorGUILayout.Space(5);
+        }
+
+        private bool ShouldSendMessageOnKeyPress()
+        {
+            return Event.current.type == EventType.KeyDown && 
+                   Event.current.keyCode == KeyCode.Return && 
+                   !string.IsNullOrWhiteSpace(userInput);
         }
 
         private void DrawConfigPanel()
