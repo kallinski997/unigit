@@ -224,21 +224,64 @@ namespace UniGit.AIAssistant.Editor
                 LevelDesignHelper.CreatePrimitive(PrimitiveType.Plane, Vector3.zero);
                 response += "✓ Created a Plane at the origin.\n\n";
             }
+            else if (prompt.ToLower().Contains("cylinder") || prompt.ToLower().Contains("zylinder"))
+            {
+                LevelDesignHelper.CreatePrimitive(PrimitiveType.Cylinder, Vector3.zero);
+                response += "✓ Created a Cylinder at the origin.\n\n";
+            }
+            else if (prompt.ToLower().Contains("capsule") || prompt.ToLower().Contains("kapsel"))
+            {
+                LevelDesignHelper.CreatePrimitive(PrimitiveType.Capsule, Vector3.zero);
+                response += "✓ Created a Capsule at the origin.\n\n";
+            }
             else if (prompt.ToLower().Contains("grid") || prompt.ToLower().Contains("raster"))
             {
                 LevelDesignHelper.CreateObjectGrid(5, 5, 2f, PrimitiveType.Cube);
                 response += "✓ Created a 5x5 grid of cubes with 2 unit spacing.\n\n";
             }
+            else if (prompt.ToLower().Contains("room") || prompt.ToLower().Contains("raum"))
+            {
+                LevelDesignHelper.CreateBasicRoom(10f, 10f, 3f);
+                response += "✓ Created a basic room (10x10x3 units).\n\n";
+            }
+            else if (prompt.ToLower().Contains("platformer"))
+            {
+                LevelTemplates.CreatePlatformerLevel();
+                response += "✓ Created a platformer level with platforms and goal.\n\n";
+            }
+            else if (prompt.ToLower().Contains("maze") || prompt.ToLower().Contains("labyrinth"))
+            {
+                LevelTemplates.CreateMaze(10, 10);
+                response += "✓ Created a 10x10 maze.\n\n";
+            }
+            else if (prompt.ToLower().Contains("arena"))
+            {
+                LevelTemplates.CreateArena(10f);
+                response += "✓ Created an arena with 10 unit radius.\n\n";
+            }
+            else if (prompt.ToLower().Contains("race track") || prompt.ToLower().Contains("rennstrecke"))
+            {
+                LevelTemplates.CreateRaceTrack();
+                response += "✓ Created a race track with waypoints.\n\n";
+            }
             else if (prompt.ToLower().Contains("light") || prompt.ToLower().Contains("licht"))
             {
-                LevelDesignHelper.CreateLight(LightType.Directional, Vector3.up * 10);
-                response += "✓ Created a Directional Light.\n\n";
+                LightType lightType = LightType.Directional;
+                
+                if (prompt.ToLower().Contains("point"))
+                    lightType = LightType.Point;
+                else if (prompt.ToLower().Contains("spot"))
+                    lightType = LightType.Spot;
+                
+                LevelDesignHelper.CreateLight(lightType, Vector3.up * 10);
+                response += $"✓ Created a {lightType} Light.\n\n";
             }
 
             response += "You can also ask me to:\n";
-            response += "• Create specific primitives (cube, sphere, plane, cylinder, capsule)\n";
-            response += "• Generate object grids\n";
-            response += "• Add lights to your scene\n";
+            response += "• Create primitives (cube, sphere, plane, cylinder, capsule)\n";
+            response += "• Generate grids and level templates\n";
+            response += "• Create rooms, mazes, arenas, or race tracks\n";
+            response += "• Add lights (directional, point, spot)\n";
             response += "• Create empty parent objects for organization";
 
             return response;
@@ -278,17 +321,29 @@ namespace UniGit.AIAssistant.Editor
         {
             string response = "Here's a code snippet that might help:\n\n";
 
-            if (prompt.ToLower().Contains("movement") || prompt.ToLower().Contains("move"))
+            if (prompt.ToLower().Contains("movement") || prompt.ToLower().Contains("move") || prompt.ToLower().Contains("bewegung"))
             {
                 response += CodeSnippets.GetMovementScript();
             }
-            else if (prompt.ToLower().Contains("rotation") || prompt.ToLower().Contains("rotate"))
+            else if (prompt.ToLower().Contains("rotation") || prompt.ToLower().Contains("rotate") || prompt.ToLower().Contains("drehen"))
             {
                 response += CodeSnippets.GetRotationScript();
             }
-            else if (prompt.ToLower().Contains("trigger") || prompt.ToLower().Contains("collision"))
+            else if (prompt.ToLower().Contains("trigger") || prompt.ToLower().Contains("collision") || prompt.ToLower().Contains("kollision"))
             {
                 response += CodeSnippets.GetTriggerScript();
+            }
+            else if (prompt.ToLower().Contains("singleton") || prompt.ToLower().Contains("manager"))
+            {
+                response += CodeSnippets.GetSingletonScript();
+            }
+            else if (prompt.ToLower().Contains("coroutine") || prompt.ToLower().Contains("delay") || prompt.ToLower().Contains("wait"))
+            {
+                response += CodeSnippets.GetCoroutineExample();
+            }
+            else if (prompt.ToLower().Contains("pool") || prompt.ToLower().Contains("pooling"))
+            {
+                response += CodeSnippets.GetObjectPoolingScript();
             }
             else
             {
@@ -296,6 +351,14 @@ namespace UniGit.AIAssistant.Editor
             }
 
             response += "\n\nYou can copy this code and create a new script in your project.";
+            response += "\n\nAvailable snippets:\n";
+            response += "• Movement scripts\n";
+            response += "• Rotation code\n";
+            response += "• Trigger systems\n";
+            response += "• Singleton pattern\n";
+            response += "• Coroutine examples\n";
+            response += "• Object pooling";
+            
             return response;
         }
 

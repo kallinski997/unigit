@@ -99,6 +99,34 @@ namespace UniGit.AIAssistant.Editor
             LevelDesignHelper.ArrangeInCircle(5f);
         }
 
+        [MenuItem("AI Assistant/Templates/Platformer Level", priority = 350)]
+        public static void CreatePlatformerLevel()
+        {
+            LevelTemplates.CreatePlatformerLevel();
+            Debug.Log("Created platformer level template");
+        }
+
+        [MenuItem("AI Assistant/Templates/Maze", priority = 351)]
+        public static void CreateMaze()
+        {
+            LevelTemplates.CreateMaze(10, 10);
+            Debug.Log("Created 10x10 maze template");
+        }
+
+        [MenuItem("AI Assistant/Templates/Arena", priority = 352)]
+        public static void CreateArena()
+        {
+            LevelTemplates.CreateArena(10f);
+            Debug.Log("Created arena template");
+        }
+
+        [MenuItem("AI Assistant/Templates/Race Track", priority = 353)]
+        public static void CreateRaceTrack()
+        {
+            LevelTemplates.CreateRaceTrack();
+            Debug.Log("Created race track template");
+        }
+
         [MenuItem("AI Assistant/Materials/Create Basic Material", priority = 400)]
         public static void CreateBasicMaterial()
         {
